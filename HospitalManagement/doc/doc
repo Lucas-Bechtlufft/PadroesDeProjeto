@@ -1,0 +1,62 @@
+Este documento descreve a aplicação de quatro padrões de projeto no desenvolvimento de um sistema de gerenciamento hospitalar, implementado em Java. Os padrões abordados são:
+
+Singleton (Criacional)
+Builder (Criacional)
+Facade (Estrutural)
+Observer (Comportamental)
+1. Singleton
+Descrição: O padrão Singleton garante que uma classe tenha apenas uma instância e fornece um ponto de acesso global a essa instância.
+
+Aplicabilidade no Sistema:
+No sistema de gerenciamento hospitalar, o Singleton foi aplicado ao sistema de prontuário eletrônico. Este sistema deve ser único e acessível por todos os componentes do hospital, assegurando que todas as operações referentes a prontuários utilizem a mesma instância, evitando inconsistências e problemas de concorrência.
+
+Classe Implementada:
+
+ProntuarioEletronico
+Benefícios:
+
+Controle centralizado dos prontuários dos pacientes.
+Facilidade de manutenção e escalabilidade, visto que o estado do prontuário é gerido por uma única instância.
+2. Builder
+Descrição: O padrão Builder separa a construção de um objeto complexo de sua representação, permitindo que o mesmo processo de construção possa criar diferentes representações.
+
+Aplicabilidade no Sistema:
+O Builder foi utilizado para a criação de objetos da classe Paciente. Pacientes podem ter várias propriedades opcionais (endereço, telefone, histórico médico), e o uso do Builder facilita a criação de instâncias personalizadas de Paciente sem sobrecarregar o construtor com múltiplos parâmetros.
+
+Classe Implementada:
+
+Paciente
+PacienteBuilder (Classe interna)
+Benefícios:
+
+Flexibilidade na criação de objetos Paciente.
+Código mais limpo e legível, evitando múltiplos construtores ou a necessidade de passar muitos parâmetros.
+3. Facade
+Descrição: O padrão Facade fornece uma interface simplificada para um conjunto de interfaces em um subsistema, facilitando o uso deste.
+
+Aplicabilidade no Sistema:
+No sistema de gerenciamento hospitalar, o Facade foi aplicado para simplificar a interação com subsistemas como o sistema de agendamento de consultas, faturamento e inventário. A classe SistemaFacade oferece métodos simples que agregam chamadas a esses subsistemas, permitindo que operações complexas sejam realizadas de forma fácil e intuitiva.
+
+Classe Implementada:
+
+SistemaFacade
+Benefícios:
+
+Redução da complexidade na interação com múltiplos subsistemas.
+Interface unificada que facilita o uso e a manutenção do sistema.
+4. Observer
+Descrição: O padrão Observer define uma dependência um-para-muitos entre objetos, de modo que, quando um objeto muda de estado, todos os seus dependentes são notificados e atualizados automaticamente.
+
+Aplicabilidade no Sistema:
+O Observer foi utilizado no contexto de monitoramento do estado dos pacientes. Médicos (ou outros observadores) são notificados automaticamente quando o estado de um paciente muda, permitindo que ações imediatas sejam tomadas conforme necessário.
+
+Classe Implementada:
+
+PacienteObserver
+Medico (implementa a interface Observer)
+Benefícios:
+
+Atualização automática de todos os observadores quando há uma mudança no estado do paciente.
+Facilita a implementação de notificações em tempo real e ações reativas no sistema.
+Conclusão
+A aplicação desses padrões de projeto no sistema de gerenciamento hospitalar demonstra como princípios de design bem estabelecidos podem ser usados para criar um sistema mais modular, flexível e fácil de manter. O Singleton garante uma gestão centralizada de prontuários, o Builder simplifica a criação de objetos complexos, o Facade reduz a complexidade da interação com subsistemas, e o Observer permite notificações em tempo real sobre mudanças no estado dos pacientes.
